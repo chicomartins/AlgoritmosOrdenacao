@@ -1,12 +1,13 @@
 import java.io.*;
-import java.util.*;
+import custom.util.List;
+import custom.util.ArrayList;
+import custom.util.Arrays;
 
 public class Main {
     public static int[] readCSV(String filePath) throws IOException {
         List<Integer> list = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             br.readLine();
-
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.trim();
@@ -15,7 +16,13 @@ public class Main {
                 }
             }
         }
-        return list.stream().mapToInt(i -> i).toArray();
+
+        int size = list.size();
+        int[] result = new int[size];
+        for (int i = 0; i < size; i++) {
+            result[i] = list.get(i);
+        }
+        return result;
     }
 
     public static void main(String[] args) throws IOException {
